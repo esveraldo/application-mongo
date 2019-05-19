@@ -1,7 +1,9 @@
-{{#if success_msg}}
+<div class="col-lg-12">
+    {{#if success_msg}}
     <div class="alert alert-success">{{success_msg}}</div>
-{{/if}}
+    {{/if}}
 
-{{#if failed_msg}}
-    <div class="alert alert-danger">{{failed_msg}}</div>
-{{/if}}
+    {{#if failed_msg}}
+        <div class="alert alert-danger">{{failed_msg}}</div>
+    {{/if}}
+</div>

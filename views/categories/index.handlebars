@@ -1,0 +1,9 @@
+<div class="col-lg-12">
+    <h4>Lista de categorias:</h4>
+
+    {{#each categorie}}
+        <a href="/categories/posts/{{slug}}"><h5>{{name}}</h5></a>
+    {{else}}
+        <h5>Sem categorias registradas</h5>
+    {{/each}}
+</div>

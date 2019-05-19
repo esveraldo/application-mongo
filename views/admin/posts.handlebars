@@ -1,0 +1,22 @@
+<div class="col-lg-12">
+<h2>Lista de posts: </h2>
+<a href="/admin/posts/add"><button type="button" class="btn btn-outline-primary" style="margin: 10px 0;">Cadastrar post</button></a>
+    {{#each post}}
+        <div class="card mt-4">
+            <div class="card-body">
+            <h4>{{title}}</h4>
+            <p>{{description}}</p>
+            <p>{{content}}</p>
+            <small>{{date}}</small>
+            <br>
+            <small>{{categorie.name}}</small>
+            <br>
+            <a href="/admin/posts/edit/{{_id}}"><button class="btn btn-warning mt-2">Editar post</button></a>
+            <a href="/admin/posts/delete/{{_id}}"><button class="btn btn-danger mt-2">Deletar post</button></a>
+            </div>
+    </div>
+    {{else}}
+        <h4>Não existe postagens.</h4>
+    {{/each}}
+<div style="float:left; clear:both; width:100%; margin: 10px 0 10px 0;"></div>
+</div>
