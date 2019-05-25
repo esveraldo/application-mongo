@@ -14,6 +14,9 @@ const Post = mongoose.model('posts');
 require('./models/Categorie');
 const Categorie = mongoose.model('categories');
 
+const passport = require('passport');
+require('./config/auth')(passport)
+
 //TODO configuracoes
 //TODO body-parser
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,12 +28,19 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 
 //TODO Middleware
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.failed_msg = req.flash('failed_msg');
+    res.locals.error = req.flash("error");
+    //TODO PESQUISAR UMA SOLUÇÃO MELHOR
+    res.locals.user = req.user || null;
     next();
 });
 

@@ -5,13 +5,15 @@ require('../models/Categorie');
 const Categorie = mongoose.model('categories');
 require('../models/Post');
 const Post = mongoose.model('posts');
+//TODO DEFINE A PERMISSÃO DO USUÁRIO NA ROTA
+const {eAdmin} = require('../helpers/eAdmin');
 
 
 router.get('/', (req, res, next) => {
     res.render('admin/index');
 });
 
-router.get('/categories', (req, res, next) => {
+router.get('/categories', eAdmin, (req, res, next) => {
     Categorie.find().sort({data: 'desc'})
     .then((categorias) => {
         res.render('admin/categories', { categorias: categorias });
@@ -21,7 +23,7 @@ router.get('/categories', (req, res, next) => {
     });
 });
 
-router.get('/categories/add', (req, res, next) => {
+router.get('/categories/add',  eAdmin, (req, res, next) => {
     res.render('admin/addcategories');
 });
 
