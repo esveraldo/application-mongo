@@ -17,6 +17,8 @@ const Categorie = mongoose.model('categories');
 const passport = require('passport');
 require('./config/auth')(passport)
 
+const db = require('./config/db');
+
 //TODO configuracoes
 //TODO body-parser
 app.use(bodyParser.urlencoded({extended: true}));
@@ -50,7 +52,7 @@ app.set('view engine', 'handlebars');
 
 //TODO Base de dados
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/blogapp')
+mongoose.connect(db.mongoURI)
 .then(() => {
     console.log('Base running.');
 })
@@ -125,7 +127,7 @@ app.use('/admin', admin);
 app.use('/users', users);
 
 //TODO server
-const port = 3000;
+const port = process.env.port || 3000;
 app.listen(port, () => {
     console.log(`Server running in port ${port}`);
 })
